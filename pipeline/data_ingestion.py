@@ -1,13 +1,7 @@
 import pandas as pd
 from sqlalchemy import create_engine
-from tqdm import tqdm
 from dataclasses import dataclass
-
-def build_taxi_url(year: int, month: int) -> str:
-    prefix = "https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow"
-    return (
-        f"{prefix}/yellow_tripdata_{year}-{month:02d}.csv.gz"
-    )
+from tqdm import tqdm
 
 # -----------------------------
 # Config Class
@@ -35,8 +29,7 @@ class DataIngestion:
 
     def load_data_in_chunks(self):
         """Returns an iterator of DataFrame chunks"""
-        print("Loading data in chunks...")
-
+        print(f"Loading data from {self.config.data_url} in chunks of {self.config.chunk_size}...")
         return pd.read_csv(
             self.config.data_url,
             dtype=self.dtype,
@@ -45,8 +38,8 @@ class DataIngestion:
         )
 
     def create_table(self, df, table_name: str):
+        """Creates an empty table in Postgres based on the first chunk"""
         print(f"Creating table: {table_name}")
-
         df.head(0).to_sql(
             name=table_name,
             con=self.engine,
@@ -55,8 +48,7 @@ class DataIngestion:
         )
 
     def insert_chunks(self, df_iterator, table_name: str):
-        print("Inserting data in chunks...")
-
+        """Inserts DataFrame chunks into Postgres with tqdm progress bar"""
         for i, chunk in enumerate(tqdm(df_iterator, desc="Uploading chunks"), start=1):
             chunk.to_sql(
                 name=table_name,
@@ -65,13 +57,14 @@ class DataIngestion:
                 index=False,
                 method="multi"
             )
-            print("Inserted Chunk:", len(chunk))
+            print(f"Inserted chunk {i}, {len(chunk)} rows")
 
         print("All chunks inserted successfully.")
 
     def run(self, table_name: str):
         df_iterator = self.load_data_in_chunks()
 
+        # Get first chunk for schema creation
         first_chunk = next(df_iterator)
         self.create_table(first_chunk, table_name)
 
@@ -87,32 +80,49 @@ class DataIngestion:
         # Insert remaining chunks
         self.insert_chunks(df_iterator, table_name)
 
+def build_taxi_url(year: int, month: int) -> str:
+    """Construct the NYC TLC Yellow Taxi CSV URL from GitHub"""
+    prefix = "https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow"
+    return (
+        f"{prefix}/yellow_tripdata_{year}-{month:02d}.csv.gz"
+    )
 
-# -----------------------------
-# Main Script Entry Point
-# -----------------------------
-def main(year, month):
 
+import click
+
+@click.command()
+@click.option('--user', default='root', help='PostgreSQL user')
+@click.option('--password', default='root', help='PostgreSQL password')
+@click.option('--host', default='localhost', help='PostgreSQL host')
+@click.option('--port', default=5432, type=int, help='PostgreSQL port')
+@click.option('--db', default='ny_taxi', help='PostgreSQL database name')
+@click.option('--year', default=2021, type=int, help='Year of taxi data')
+@click.option('--month', default=1, type=int, help='Month of taxi data')
+def ingest_data(user, password, host, port, db, year, month):
+    """Command-line ETL for NYC Yellow Taxi Data"""
+
+    # Build CSV URL dynamically
     data_url = build_taxi_url(year, month)
+
+    # Build PostgreSQL connection string
+    connection_url = f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{db}"
+
     config = ConnectionEngine(
         data_url=data_url,
-        connection_url="postgresql+psycopg2://root:root@localhost:5432/ny_taxi", # 'postgresql://root:root@localhost:5432/ny_taxi'
+        connection_url=connection_url,
         chunk_size=100_000
     )
-
     from parameters import parse_dates, dtype
 
-    pipeline = DataIngestion(
-        config=config,
-        dtype=dtype,
-        parse_dates=parse_dates
-    )
+    pipeline = DataIngestion(config=config, dtype=dtype, parse_dates=parse_dates)
 
-    pipeline.run("yellow_taxi_data")
+    # Dynamic table name based on year/month
+    # table_name = f"yellow_taxi_data_{year}_{month:02d}"
+    table_name = "yellow_taxi_data"
+
+    pipeline.run(table_name)
 
 
-# -----------------------------
-# Script Runner
-# -----------------------------
 if __name__ == "__main__":
-    main(2021, 1)
+    ingest_data()
+
