@@ -102,11 +102,11 @@ def ingest_file(
 
 if __name__ == "__main__":
     ingest_file(
-        filepath="data/yellow_tripdata_2025-11.parquet",
-        user="root",
-        password="root",
+        filepath="taxi_zone_lookup.csv",
+        user="postgres",
+        password="postgres",
         host="localhost",
-        port=5432,
+        port=5434,
         db="ny_taxi",
-        table_name="yellow_trip_data_2025"
+        table_name="zones"
     )

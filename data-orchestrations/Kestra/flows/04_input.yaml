@@ -1,0 +1,57 @@
+id: input_example
+namespace: input
+
+inputs:
+  - id: username
+    type: STRING
+    defaults: Olawoye Taofeek
+
+  - id: api_url
+    type: STRING
+    defaults: https://dummyjson.com/products
+
+tasks:
+  - id: hello
+    type: io.kestra.plugin.core.log.Log
+    message: Hello World! {{ inputs.username }}🚀
+
+  - id: api
+    type: io.kestra.plugin.core.http.Request
+    uri: "{{ inputs.api_url }}"
+    method: GET
+
+  - id: output
+    type: io.kestra.plugin.core.log.Log
+    message: |
+      API response:
+      {{ outputs.api.body }}
+
+  - id: python
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:3.11-slim
+    beforeCommands:
+      - pip install requests pandas
+    warningOnStdErr: false
+    outputFiles:
+      - "products.csv"
+    script: |
+      import json
+      import pandas as pd
+
+      # Parse API response (Kestra injects JSON here)
+      response = json.loads("""{{ outputs.api.body }}""")
+
+      # Extract products
+      products = response["products"]
+
+      # Create DataFrame
+      df = pd.DataFrame(products)
+
+      # Save selected columns
+      df[["brand", "price"]].to_csv("products.csv", index=False)
+
+      print("Saved products.csv")
+
+
+
+

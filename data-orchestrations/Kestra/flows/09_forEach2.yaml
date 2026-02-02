@@ -1,0 +1,47 @@
+id: 09_for_each
+namespace: zoomcap
+
+inputs:
+  - id: endpoints
+    type: ARRAY
+    itemType: STRING
+    defaults:
+      - https://dummyjson.com/products
+      - https://dummyjson.com/users
+
+tasks:
+  - id: fetch_and_transform
+    type: io.kestra.plugin.core.flow.ForEach
+    values: "{{ inputs.endpoints }}"
+    tasks:
+
+      - id: python
+        type: io.kestra.plugin.scripts.python.Script
+        containerImage: python:3.11-slim
+        beforeCommands:
+          - pip install requests
+        outputFiles:
+          - "*.json"
+        script: |
+          import json
+          import requests
+
+          url = "{{ taskrun.value }}"
+          response = requests.get(url)
+          response.raise_for_status()
+          data = response.json()
+
+          name = url.rstrip("/").split("/")[-1]
+
+          if "products" in data:
+              records = data["products"]
+          elif "users" in data:
+              records = data["users"]
+          else:
+              raise ValueError("Unknown structure")
+
+          output_file = f"{name}_clean.json"
+          with open(output_file, "w") as f:
+              json.dump(records, f, indent=2)
+
+          print(f"Saved {output_file} with {len(records)} records")

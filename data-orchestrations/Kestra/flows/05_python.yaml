@@ -1,0 +1,23 @@
+id: getting_started
+namespace: company.team
+
+description: |
+  # Getting Started
+  Let's `write` some **markdown** - [first flow](https://t.ly/Vemr0) 🚀
+
+labels:
+  tag: Getting Started
+
+tasks:
+  - id: hello_world
+    type: io.kestra.plugin.core.log.Log
+    message: Hello World!
+    description: |
+      ## About this task
+      This task prints "Hello World!" to the logs.
+
+  - id: python
+    type: io.kestra.plugin.scripts.python.Script
+    containerImage: python:slim
+    script: |
+      print("Hello World!")

@@ -93,11 +93,11 @@ import click
 @click.command()
 @click.option('--user', default='root', help='PostgreSQL user')
 @click.option('--password', default='root', help='PostgreSQL password')
-@click.option('--host', default='pgdatabase', help='PostgreSQL host')
+@click.option('--host', default='localhost', help='PostgreSQL host')
 @click.option('--port', default=5432, type=int, help='PostgreSQL port')
 @click.option('--db', default='ny_taxi', help='PostgreSQL database name')
-@click.option('--year', default=2021, type=int, help='Year of taxi data')
-@click.option('--month', default=1, type=int, help='Month of taxi data')
+@click.option('--year', default=2025, type=int, help='Year of taxi data')
+@click.option('--month', default=11, type=int, help='Month of taxi data')
 def ingest_data(user, password, host, port, db, year, month):
     """Command-line ETL for NYC Yellow Taxi Data"""
 
@@ -118,7 +118,7 @@ def ingest_data(user, password, host, port, db, year, month):
 
     # Dynamic table name based on year/month
     # table_name = f"yellow_taxi_data_{year}_{month:02d}"
-    table_name = "yellow_taxi_data"
+    table_name = "yellow_taxi_data_2025"
 
     pipeline.run(table_name)
 

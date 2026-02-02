@@ -10,7 +10,7 @@ services:
     volumes:
       - ny_taxi_postgres_data:/var/lib/postgresql
 
-  pgadmin:
+  pgadmin_db:
     image: dpage/pgadmin4
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@admin.com
@@ -19,9 +19,9 @@ services:
       - pgadmin_data:/var/lib/pgadmin
     ports:
       - "8085:80"
-    depends_on:
-      pgdatabase:
-        condition: service_healthy
+#    depends_on:
+#      pgdatabase:
+#        condition: service_healthy
 
   kestra_postgres:
     image: postgres:18
@@ -38,7 +38,7 @@ services:
       retries: 10
 
   kestra:
-    image: kestra/kestra:latest
+    image: kestra/kestra:v1.1
     pull_policy: always
     # Note that this setup with a root user is intended for development purpose.
     # Our base image runs without root, but the Docker Compose implementation needs root to access the Docker socket
