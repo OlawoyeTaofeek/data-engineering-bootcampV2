@@ -1,0 +1,71 @@
+id: etl_postgres_scheduled
+namespace: data-entusiast
+
+## Take data from csv on github, and load into postgres for analysis
+
+inputs:
+  - id: taxi
+    type: SELECT
+    displayName: Select taxi Type
+    values: [yellow, green]
+    defaults: yellow
+
+  - id:  month
+    type: SELECT
+    displayName: Select month
+    values: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
+    defaults: "01"
+
+  - id: year
+    type: SELECT
+    displayName: Select year
+    values: ["2020", "2021"]
+    defaults: "2020"
+
+variables:
+  file: "{{inputs.taxi}}_tripdata_{{inputs.year}}-{{inputs.month}}.csv"
+  staging_table: "public.{{inputs.taxi}}_tripdata_staging"
+  table: "public.{{inputs.taxi}}_tripdata"
+  data: "{{outputs.extract.outputFiles[inputs.taxi ~ '_tripdata_' ~ inputs.year ~ '-' ~ inputs.month ~ '.csv']}}"
+
+tasks:
+  - id: set_label
+    type: io.kestra.plugin.core.execution.Labels
+    labels:
+      file: "{{ render(vars.file) }}"
+      taxi: "{{ inputs.taxi }}"
+
+  - id: extract
+    type: io.kestra.plugin.scripts.shell.Commands
+    outputFiles:
+      - "*.csv"
+    taskCache:
+      enabled: true
+    taskRunner:
+      type: io.kestra.plugin.core.runner.Process
+    commands:
+      - wget -qO- https://github.com/DataTalksClub/nyc-tlc-data/releases/download/{{inputs.taxi}}/{{render(vars.file)}}.gz | gunzip > {{render(vars.file)}}
+
+  - id: get_file_size
+    type: io.kestra.plugin.scripts.shell.Commands
+    outputFiles:
+      - size.txt
+    taskRunner:
+      type: io.kestra.plugin.core.runner.Process
+    inputFiles:
+      yellow_tripdata_2020-12.csv: "{{ outputs.extract.outputFiles[render(vars.file)] }}"
+    commands:
+      - |
+        wc -c < yellow_tripdata_2020-12.csv > size.txt
+
+
+  - id: log_file_size
+    type: io.kestra.plugin.core.log.Log
+    message: >
+      📦 File {{ render(vars.file) }} size:
+      {{ (read(outputs.get_file_size.outputFiles['size.txt']) | trim | number / 1024 / 1024 ) }} MB
+
+
+
+
+
