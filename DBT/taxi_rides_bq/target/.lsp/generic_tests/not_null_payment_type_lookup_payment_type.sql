@@ -1,0 +1,1 @@
+{{ test_not_null(column_name="payment_type", model=get_where_subquery(ref('payment_type_lookup'))) }}

@@ -1,0 +1,1 @@
+{{ test_not_null(column_name="revenue_monthly_total_amount", model=get_where_subquery(ref('fct_monthly_zone_revenue'))) }}

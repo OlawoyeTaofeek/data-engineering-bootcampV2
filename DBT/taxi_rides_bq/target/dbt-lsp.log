@@ -1,0 +1,85 @@
+==================== 2026-02-20T10:53:13.378630Z | fed4a84a-e066-490f-a454-b7978c808931 ====================
+10:53:13.378885 [info ]: Starting dbt LSP server
+10:53:13.378992 [info ]: Connecting to LSP client on port 8000
+10:53:13.385618 [info ]: Successfully connected to LSP client
+10:53:13.385661 [info ]: Creating LSP service...
+10:53:13.534680 [info ]: Creating LSP server...
+10:53:13.534711 [info ]: Starting LSP server...
+10:53:13.677622 [info ]: Started loading project
+10:53:13.694749 [info ]: Loading ~/.dbt/profiles.yml
+10:53:13.825389 [info ]:    Started resolving packages from packages.yml
+10:53:14.496057 [info ]:   Finished [  0.67s] resolving packages from packages.yml (2 items)
+10:53:14.496935 [debug]:    Started loading packages
+10:53:14.528883 [debug]:     Loaded [  0.03s] packages
+10:53:14.528933 [debug]:    Started loading internal packages
+10:53:14.577423 [debug]:     Loaded [  0.05s] internal packages
+10:53:14.577644 [info ]: Finished loading project [  0.90s]
+10:53:14.578624 [info ]: Started parsing
+10:53:14.733267 [debug]: Finished parsing models\staging\green\schema.yml [  0.00s]
+10:53:14.734250 [debug]: Finished parsing models\staging\green\src_green.yml [  0.00s]
+10:53:14.735031 [debug]: Finished parsing models\staging\yellow\schema.yml [  0.00s]
+10:53:14.735690 [debug]: Finished parsing models\staging\yellow\src_yellow.yml [  0.00s]
+10:53:14.736222 [debug]: Finished parsing seeds\seeds_properties.yml [  0.00s]
+10:53:14.753728 [debug]: Finished parsing models\staging\green\stg_green_tripdata.sql [  0.00s]
+10:53:14.765946 [debug]: Finished parsing models\staging\yellow\stg_yellow_tripdata.sql [  0.01s]
+10:53:14.768059 [debug]: Finished parsing target\generic_tests\unique_payment_type_lookup_payment_type.sql [  0.00s]
+10:53:14.769326 [debug]: Finished parsing target\generic_tests\not_null_payment_type_lookup_payment_type.sql [  0.00s]
+10:53:14.771079 [debug]: Finished parsing target\generic_tests\not_null_stg_green_tripdata_pickup_datetime.sql [  0.00s]
+10:53:14.772197 [debug]: Finished parsing target\generic_tests\not_null_stg_green_tripdata_vendor_id.sql [  0.00s]
+10:53:14.773333 [debug]: Finished parsing target\generic_tests\not_null_stg_yellow_tripdata_pickup_datetime.sql [  0.00s]
+10:53:14.778168 [debug]: Finished parsing target\generic_tests\not_null_stg_yellow_tripdata_vendor_id.sql [  0.00s]
+10:53:14.780314 [info ]: Finished parsing [  0.20s]
+10:53:14.784118 [info ]: Cached model count updated: 2 models (estimate)
+10:53:14.784167 [info ]: Cached model count updated: 2 models (accurate)
+10:53:14.784315 [info ]: Started scheduling
+10:53:14.784766 [info ]: Finished scheduling [  0.00s]
+10:53:14.784864 [info ]: Started scheduling
+10:53:14.785033 [info ]: Finished scheduling [  0.00s]
+10:53:14.785370 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "datazoomcamp-486715", schema: "dbt_homework4", table: "green_tripdata" }) and interval: None
+10:53:14.785663 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "datazoomcamp-486715", schema: "dbt_homework4", table: "yellow_tripdata" }) and interval: None
+10:53:14.787898 [info ]: Started deferring state
+10:53:14.787968 [info ]: Finished deferring state [  0.00s]
+10:53:14.790886 [info ]: Started downloading schemas
+10:53:14.791100 [debug]:    Started downloading relations
+10:53:14.791255 [debug]:   Finished [  0.00s] downloading relations
+10:53:16.720706 [info ]: Downloaded `datazoomcamp-486715`.`dbt_homework4`.`green_tripdata` (schema)
+10:53:16.726885 [info ]: Downloaded `datazoomcamp-486715`.`dbt_homework4`.`yellow_tripdata` (schema)
+10:53:17.365220 [info ]: Started building task graph
+10:53:17.365617 [info ]: Finished building task graph [  0.00s]
+10:53:17.366128 [info ]: Started rendering (4 nodes)
+10:53:17.366202 [info ]: Started seed ny_taxi_rides.zone_lookup
+10:53:17.366276 [debug]: Started rendering seed ny_taxi_rides.zone_lookup
+10:53:17.366350 [info ]: Started seed ny_taxi_rides.payment_type_lookup
+10:53:17.366364 [debug]: Started rendering seed ny_taxi_rides.payment_type_lookup
+10:53:17.366391 [info ]: Finished downloading schemas [  2.58s]
+10:53:17.366393 [info ]: Started model ny_taxi_rides.stg_yellow_tripdata
+10:53:17.366410 [debug]: Started rendering model ny_taxi_rides.stg_yellow_tripdata
+10:53:17.366443 [info ]: Started model ny_taxi_rides.stg_green_tripdata
+10:53:17.366466 [debug]: Started rendering model ny_taxi_rides.stg_green_tripdata
+10:53:17.368180 [error]: dbt1501: Failed to render SQL unknown method: undefined has no method named generate_surrogate_key
+(in models\staging\yellow\stg_yellow_tripdata.sql:9:5)
+  --> models\staging\yellow\stg_yellow_tripdata.sql:9:5
+10:53:17.368299 [info ]: Started analyzing (4 nodes)
+10:53:17.368320 [debug]: Started analyzing model ny_taxi_rides.stg_yellow_tripdata
+10:53:17.368357 [info ]:     Failed [  0.00s] model ny_taxi_rides.stg_yellow_tripdata (table)
+10:53:17.368393 [debug]: Finished analyzing [  0.00s] model ny_taxi_rides.stg_yellow_tripdata [skipped]
+10:53:17.368463 [error]: dbt1501: Failed to render SQL unknown method: undefined has no method named generate_surrogate_key
+(in models\staging\green\stg_green_tripdata.sql:8:5)
+  --> models\staging\green\stg_green_tripdata.sql:8:5
+10:53:17.368506 [debug]: Started analyzing model ny_taxi_rides.stg_green_tripdata
+10:53:17.368530 [info ]:     Failed [  0.00s] model ny_taxi_rides.stg_green_tripdata (table)
+10:53:17.368536 [debug]: Finished rendering [  0.00s] model ny_taxi_rides.stg_yellow_tripdata [error]
+10:53:17.368556 [debug]: Finished analyzing [  0.00s] model ny_taxi_rides.stg_green_tripdata [skipped]
+10:53:17.368582 [debug]: Finished rendering [  0.00s] model ny_taxi_rides.stg_green_tripdata [error]
+10:53:17.385068 [debug]: Finished rendering [  0.02s] seed ny_taxi_rides.zone_lookup [success]
+10:53:17.385149 [debug]: Started analyzing seed ny_taxi_rides.zone_lookup
+10:53:17.385249 [info ]:  Succeeded [  0.02s] seed  ny_taxi_rides.zone_lookup (table)
+10:53:17.385299 [debug]: Finished analyzing [  0.00s] seed ny_taxi_rides.zone_lookup [success]
+10:53:17.385405 [debug]: Finished rendering [  0.02s] seed ny_taxi_rides.payment_type_lookup [success]
+10:53:17.385445 [info ]: Finished rendering [  0.02s] (4 nodes, 0 skipped, 2 errors)
+10:53:17.385481 [debug]: Started analyzing seed ny_taxi_rides.payment_type_lookup
+10:53:17.385546 [info ]:  Succeeded [  0.02s] seed  ny_taxi_rides.payment_type_lookup (table)
+10:53:17.385599 [debug]: Finished analyzing [  0.00s] seed ny_taxi_rides.payment_type_lookup [success]
+10:53:17.385614 [info ]: Finished analyzing [  0.02s] (4 nodes, 2 skipped, 0 errors)
+10:53:17.399351 [info ]: Cached model count updated: 2 models (accurate)
+10:53:21.356732 [info ]: Loading ~/.dbt/profiles.yml

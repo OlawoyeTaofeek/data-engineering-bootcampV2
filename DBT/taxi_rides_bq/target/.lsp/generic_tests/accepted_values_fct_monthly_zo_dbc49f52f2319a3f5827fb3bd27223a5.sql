@@ -1,0 +1,1 @@
+{{ test_accepted_values(column_name="service_type", model=get_where_subquery(ref('fct_monthly_zone_revenue')), values=["Green","Yellow"]) }}
