@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+
+  - name: staging
+    description: Source for the taxi rides data in New York City
+    database: ny_taxi
+    schema: public
+
+    tables:
+      - name: yellow_tripdata
+        description: Raw yellow taxi trip records
+        config:
+          loaded_at_field: tpep_pickup_datetime
+          freshness:
+            warn_after: {count: 1, period: day}
+            error_after: {count: 2, period: day}

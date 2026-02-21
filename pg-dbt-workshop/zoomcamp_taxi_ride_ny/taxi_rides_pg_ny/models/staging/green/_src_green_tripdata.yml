@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: staging
+    description: "Source for NYC taxi rides"
+    database: ny_taxi
+    schema: public
+
+    tables:
+      - name: green_tripdata
+        description: Raw green taxi trips
+        config:
+          loaded_at_field: lpep_pickup_datetime
+          freshness:
+            warn_after: {count: 1, period: day}
+            error_after: {count: 2, period: day}

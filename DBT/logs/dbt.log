@@ -1,0 +1,29 @@
+[0m10:13:45.631877 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002892C91E9C0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002892C91FE30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002892C599BE0>]}
+
+
+============================== 10:13:45.662636 | 64d0dafd-bf69-42a3-a7a6-dc69774e4c02 ==============================
+[0m10:13:45.662636 [info ] [MainThread]: Running with dbt=1.11.6
+[0m10:13:45.665366 [debug] [MainThread]: running dbt with arguments {'version_check': 'True', 'no_print': 'None', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'printer_width': '80', 'write_json': 'True', 'empty': 'None', 'log_cache_events': 'False', 'introspect': 'True', 'cache_selected_only': 'False', 'fail_fast': 'False', 'debug': 'False', 'log_format': 'default', 'profiles_dir': 'C:\\Users\\user\\.dbt', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'warn_error': 'None', 'partial_parse': 'True', 'indirect_selection': 'eager', 'use_colors': 'True', 'invocation_command': 'dbt init', 'use_experimental_parser': 'False', 'log_path': 'logs'}
+[0m10:14:11.473808 [debug] [MainThread]: Starter project path: C:\Users\user\Documents\DataEngineeringBootCamp\DBT\env\Lib\site-packages\dbt\include\starter_project
+[0m10:14:11.519005 [info ] [MainThread]: 
+Your new dbt project "taxi_rides_bq" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m10:14:11.520195 [info ] [MainThread]: Setting up your profile.
+[0m10:16:59.100911 [info ] [MainThread]: Profile taxi_rides_bq written to C:\Users\user\.dbt\profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m10:16:59.103679 [debug] [MainThread]: Command `dbt init` succeeded at 10:16:59.103153 after 193.87 seconds
+[0m10:16:59.105258 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000289542B9700>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000028953D26900>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000028948FE8EC0>]}
+[0m10:16:59.106893 [debug] [MainThread]: Flushing usage events
+[0m10:17:01.124221 [debug] [MainThread]: An error was encountered while trying to flush usage events

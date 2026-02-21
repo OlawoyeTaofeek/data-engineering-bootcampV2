@@ -47,3 +47,9 @@ models:
         description: Total amount charged to passengers (does not include cash tips)
       - name: payment_type
         description: Payment method code (1=Credit card, 2=Cash, 3=No charge, 4=Dispute, 5=Unknown, 6=Voided)
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: "{{ var('payment_type_values') }}"
+                severity: warn
+                quote: false
