@@ -2,6 +2,8 @@
 -- This aggregation is optimized for business reporting and dashboards
 -- Enables analysis of revenue trends across different zones and taxi types
 
+
+
 select
     -- Grouping dimensions
     coalesce(pickup_zone, 'Unknown Zone') as pickup_zone,

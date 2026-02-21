@@ -33,6 +33,8 @@ models:
     # Config indicated by + and applies to all files under models/example/
     staging:
       +materialized: table
+    marts: 
+      +materialized: table
 
 vars:
   payment_type_values: ['1', '2', '3', '4', '5', '6']

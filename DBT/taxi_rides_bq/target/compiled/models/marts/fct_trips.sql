@@ -1,5 +1,3 @@
-
-
 -- Fact table containing all taxi trips enriched with zone information
 -- This is a classic star schema design: fact table (trips) joined to dimension table (zones)
 -- Materialized incrementally to handle large datasets efficiently
@@ -58,7 +56,3 @@ left join `datazoomcamp-486715`.`ny_taxi_rides`.`dim_zones` as pz
     on trips.pickup_location_id = pz.location_id
 left join `datazoomcamp-486715`.`ny_taxi_rides`.`dim_zones` as dz
     on trips.dropoff_location_id = dz.location_id
-
-
-  -- Only process new trips based on pickup datetime
-  where trips.pickup_datetime > (select max(pickup_datetime) from `datazoomcamp-486715`.`ny_taxi_rides`.`fct_trips`)

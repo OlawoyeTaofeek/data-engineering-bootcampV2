@@ -1,10 +1,20 @@
 
+  
+    
 
-  create or replace view `datazoomcamp-486715`.`ny_taxi_rides`.`fct_monthly_zone_revenue`
-  OPTIONS()
-  as -- Data mart for monthly revenue analysis by pickup zone and service type
+    create or replace table `datazoomcamp-486715`.`ny_taxi_rides`.`fct_monthly_zone_revenue`
+      
+    
+    
+
+    
+    OPTIONS()
+    as (
+      -- Data mart for monthly revenue analysis by pickup zone and service type
 -- This aggregation is optimized for business reporting and dashboards
 -- Enables analysis of revenue trends across different zones and taxi types
+
+
 
 select
     -- Grouping dimensions
@@ -29,5 +39,6 @@ select
     avg(trip_distance) as avg_monthly_trip_distance
 
 from `datazoomcamp-486715`.`ny_taxi_rides`.`fct_trips`
-group by pickup_zone, revenue_month, service_type;
-
+group by pickup_zone, revenue_month, service_type
+    );
+  

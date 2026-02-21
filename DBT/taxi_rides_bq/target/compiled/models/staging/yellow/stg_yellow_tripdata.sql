@@ -41,6 +41,4 @@ SELECT
 FROM tripdata
 WHERE row_num = 1
 
-
-   limit 100
   
