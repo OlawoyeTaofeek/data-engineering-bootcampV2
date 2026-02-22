@@ -6,7 +6,15 @@ sources:
 
       tables: 
         - name: customers
+          description: "The customers table contains one record per customer, with their first and last name."
+          columns:
+            - name: id
+              description: "The unique identifier for each customer. The primary key"
+              data_tests:
+                - not_null
+                - unique
         - name: orders
+          description: "The orders table contains one record per order, with the order status and a reference to the customer who placed the order."
           config:
             freshness:
               warn_after: {count: 1, period: day}

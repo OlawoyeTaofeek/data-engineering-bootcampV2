@@ -1,19 +1,24 @@
 models:
   - name: stg_jaffle_shop__customers
+    description: "One unique record per customer. This is the 'staging' model for customers, and should be used as the source for all downstream models that need customer information."
     columns:
         - name: customer_id
+          description: "The unique identifier for each customer. The primary key"
           data_tests:
             - not_null
             - unique
         - name: first_name
         - name: last_name
   - name: stg_jaffle_shop__orders
+    description: "One unique record per order. This is the 'staging' model for orders, and should be used as the source for all downstream models that need order information."
     columns:
         - name: order_id
+          description: "The unique identifier for each order"
           data_tests:
             - not_null
             - unique
         - name: status
+          description: "{{ doc('order_status') }}"
           data_tests:
             - accepted_values:
                 arguments:
