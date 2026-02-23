@@ -2,6 +2,6 @@
 
 select
     order_id,
-    {{ generate_payment_pivot(payment_methods) }}
+    {{ generate_payment_pivot(payment_methods, 'amount') }}
 from {{ ref('stg_stripe__payments') }}
 group by order_id
