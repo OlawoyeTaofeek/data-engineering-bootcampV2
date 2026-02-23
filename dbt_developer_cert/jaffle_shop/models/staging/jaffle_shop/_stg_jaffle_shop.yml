@@ -24,6 +24,7 @@ models:
                 arguments:
                   values: ['shipped', 'completed', 'placed', 'returned', 'return_pending']
         - name: customer_id
+          description: Foreign key to stg_customers.customer_id
           data_tests:
             - not_null
             - relationships:
