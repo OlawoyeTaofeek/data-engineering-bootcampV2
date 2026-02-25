@@ -1,0 +1,6 @@
+{"timestamp":"2026-02-24T22:03:27.417755","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2026-02-24T22:03:27.418889","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/user_profile_sensor.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2026-02-24T22:03:27.504239","level":"info","event":"Poking: marclamberti/datasets/refs/heads/main/fakeuser.json","logger":"airflow.task.operators.airflow.providers.http.sensors.http.HttpSensor"}
+{"timestamp":"2026-02-24T22:03:27.508802","level":"info","event":"Secrets backends loaded for worker","count":1,"backend_classes":["EnvironmentVariablesBackend"],"logger":"supervisor"}
+{"timestamp":"2026-02-24T22:03:27.552267","level":"info","event":"Connection Retrieved 'github_api'","logger":"airflow.hooks.base"}
+{"timestamp":"2026-02-24T22:03:29.798108","level":"info","event":"Success criteria met. Exiting.","logger":"airflow.task.operators.airflow.providers.http.sensors.http.HttpSensor"}

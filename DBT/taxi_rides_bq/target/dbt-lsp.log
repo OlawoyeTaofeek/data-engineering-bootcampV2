@@ -1,0 +1,189 @@
+==================== 2026-02-22T10:27:11.975880Z | 9a8f3d6c-8da4-4cc2-81e0-ea9e2e3e031b ====================
+10:27:11.976662 [info ]: Starting dbt LSP server
+10:27:11.976858 [info ]: Connecting to LSP client on port 8000
+10:27:11.983204 [info ]: Successfully connected to LSP client
+10:27:11.983280 [info ]: Creating LSP service...
+10:27:12.224714 [info ]: Creating LSP server...
+10:27:12.224755 [info ]: Starting LSP server...
+10:27:12.801341 [info ]: Started loading project
+10:27:12.815328 [info ]: Loading ~/.dbt/profiles.yml
+10:27:12.841730 [info ]:    Started resolving packages from packages.yml
+10:27:14.079456 [info ]:   Finished [  1.24s] resolving packages from packages.yml (2 items)
+10:27:14.080431 [debug]:    Started loading packages
+10:27:14.138282 [debug]:     Loaded [  0.06s] packages
+10:27:14.140330 [info ]: Finished loading project [  1.34s]
+10:27:14.141145 [info ]: Started parsing
+10:27:14.330851 [debug]: Finished parsing models\intermediate\schema.yml [  0.01s]
+10:27:14.334219 [debug]: Finished parsing models\marts\reporting\schema.yml [  0.00s]
+10:27:14.337704 [debug]: Finished parsing models\marts\schema.yml [  0.00s]
+10:27:14.339981 [debug]: Finished parsing models\staging\fhv\source.yml [  0.00s]
+10:27:14.342472 [debug]: Finished parsing models\staging\green\schema.yml [  0.00s]
+10:27:14.344351 [debug]: Finished parsing models\staging\green\src_green.yml [  0.00s]
+10:27:14.346939 [debug]: Finished parsing models\staging\yellow\schema.yml [  0.00s]
+10:27:14.348133 [debug]: Finished parsing models\staging\yellow\src_yellow.yml [  0.00s]
+10:27:14.349707 [debug]: Finished parsing seeds\seeds_properties.yml [  0.00s]
+10:27:14.409708 [debug]: Finished parsing models\intermediate\int_trips.sql [  0.01s]
+10:27:14.413349 [debug]: Finished parsing models\intermediate\taxi_rides.sql [  0.01s]
+10:27:14.417668 [debug]: Finished parsing models\marts\dim_vendors.sql [  0.00s]
+10:27:14.424362 [debug]: Finished parsing models\marts\dim_zones.sql [  0.01s]
+10:27:14.427174 [debug]: Finished parsing models\marts\fct_trips.sql [  0.01s]
+10:27:14.429741 [debug]: Finished parsing models\marts\reporting\assignment.sql [  0.00s]
+10:27:14.431731 [debug]: Finished parsing models\marts\reporting\assignment2.sql [  0.00s]
+10:27:14.435283 [debug]: Finished parsing models\marts\reporting\assignment3.sql [  0.00s]
+10:27:14.438079 [debug]: Finished parsing models\marts\reporting\fct_monthly_zone_revenue.sql [  0.00s]
+10:27:14.441977 [debug]: Finished parsing models\staging\fhv\stg_fhv_tripdata.sql [  0.00s]
+10:27:14.448953 [debug]: Finished parsing models\staging\green\stg_green_tripdata.sql [  0.01s]
+10:27:14.531254 [debug]: Finished parsing models\staging\yellow\stg_yellow_tripdata.sql [  0.08s]
+10:27:14.533072 [debug]: Finished parsing target\generic_tests\unique_payment_type_lookup_payment_type.sql [  0.00s]
+10:27:14.535125 [debug]: Finished parsing target\generic_tests\not_null_payment_type_lookup_payment_type.sql [  0.00s]
+10:27:14.536528 [debug]: Finished parsing target\generic_tests\unique_dim_vendors_vendor_id.sql [  0.00s]
+10:27:14.538161 [debug]: Finished parsing target\generic_tests\not_null_dim_vendors_vendor_id.sql [  0.00s]
+10:27:14.539777 [debug]: Finished parsing target\generic_tests\unique_dim_zones_location_id.sql [  0.00s]
+10:27:14.541918 [debug]: Finished parsing target\generic_tests\not_null_dim_zones_location_id.sql [  0.00s]
+10:27:14.544596 [debug]: Finished parsing target\generic_tests\dbt_utils_unique_combination_o_961556abbbe77853a8075a2259256569.sql [  0.00s]
+10:27:14.546532 [debug]: Finished parsing target\generic_tests\not_null_fct_monthly_zone_revenue_pickup_zone.sql [  0.00s]
+10:27:14.548207 [debug]: Finished parsing target\generic_tests\not_null_fct_monthly_zone_revenue_revenue_month.sql [  0.00s]
+10:27:14.549671 [debug]: Finished parsing target\generic_tests\not_null_fct_monthly_zone_revenue_revenue_monthly_total_amount.sql [  0.00s]
+10:27:14.551236 [debug]: Finished parsing target\generic_tests\not_null_fct_monthly_zone_revenue_service_type.sql [  0.00s]
+10:27:14.553342 [debug]: Finished parsing target\generic_tests\accepted_values_fct_monthly_zo_dbc49f52f2319a3f5827fb3bd27223a5.sql [  0.00s]
+10:27:14.555512 [debug]: Finished parsing target\generic_tests\not_null_fct_monthly_zone_revenue_total_monthly_trips.sql [  0.00s]
+10:27:14.557858 [debug]: Finished parsing target\generic_tests\relationships_fct_trips_ad3060576ca78bd47560ec9e21a96e3f.sql [  0.00s]
+10:27:14.560211 [debug]: Finished parsing target\generic_tests\not_null_fct_trips_pickup_datetime.sql [  0.00s]
+10:27:14.562265 [debug]: Finished parsing target\generic_tests\relationships_fct_trips_d47e97bfe07500b11a10d61b874aa24c.sql [  0.00s]
+10:27:14.564321 [debug]: Finished parsing target\generic_tests\accepted_values_fct_trips_service_type__Green__Yellow.sql [  0.00s]
+10:27:14.566480 [debug]: Finished parsing target\generic_tests\not_null_fct_trips_service_type.sql [  0.00s]
+10:27:14.568407 [debug]: Finished parsing target\generic_tests\not_null_fct_trips_total_amount.sql [  0.00s]
+10:27:14.570305 [debug]: Finished parsing target\generic_tests\unique_fct_trips_trip_id.sql [  0.00s]
+10:27:14.572073 [debug]: Finished parsing target\generic_tests\not_null_fct_trips_trip_id.sql [  0.00s]
+10:27:14.574056 [debug]: Finished parsing target\generic_tests\not_null_fct_trips_vendor_id.sql [  0.00s]
+10:27:14.576121 [debug]: Finished parsing target\generic_tests\not_null_int_trips_pickup_datetime.sql [  0.00s]
+10:27:14.578449 [debug]: Finished parsing target\generic_tests\not_null_int_trips_service_type.sql [  0.00s]
+10:27:14.580440 [debug]: Finished parsing target\generic_tests\accepted_values_int_trips_service_type__Green__Yellow.sql [  0.00s]
+10:27:14.582563 [debug]: Finished parsing target\generic_tests\not_null_int_trips_total_amount.sql [  0.00s]
+10:27:14.584666 [debug]: Finished parsing target\generic_tests\unique_int_trips_trip_id.sql [  0.00s]
+10:27:14.587020 [debug]: Finished parsing target\generic_tests\not_null_int_trips_trip_id.sql [  0.00s]
+10:27:14.588927 [debug]: Finished parsing target\generic_tests\not_null_int_trips_vendor_id.sql [  0.00s]
+10:27:14.591676 [debug]: Finished parsing target\generic_tests\accepted_values_stg_green_trip_8cb858912f43d9059b5dee071b0aff2f.sql [  0.00s]
+10:27:14.593806 [debug]: Finished parsing target\generic_tests\not_null_stg_green_tripdata_pickup_datetime.sql [  0.00s]
+10:27:14.596134 [debug]: Finished parsing target\generic_tests\not_null_stg_green_tripdata_vendor_id.sql [  0.00s]
+10:27:14.597825 [debug]: Finished parsing target\generic_tests\not_null_stg_yellow_tripdata_pickup_datetime.sql [  0.00s]
+10:27:14.636690 [debug]: Finished parsing target\generic_tests\not_null_stg_yellow_tripdata_vendor_id.sql [  0.04s]
+10:27:14.639512 [info ]: Finished parsing [  0.50s]
+10:27:14.646909 [info ]: Cached model count updated: 12 models (estimate)
+10:27:14.646949 [info ]: Cached model count updated: 12 models (accurate)
+10:27:14.647359 [info ]: Started scheduling
+10:27:14.648589 [info ]: Finished scheduling [  0.00s]
+10:27:14.648703 [info ]: Started scheduling
+10:27:14.649134 [info ]: Finished scheduling [  0.00s]
+10:27:14.649888 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "datazoomcamp-486715", schema: "dbt_homework4", table: "green_tripdata" }) and interval: None
+10:27:14.650575 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "datazoomcamp-486715", schema: "dbt_homework4", table: "yellow_tripdata" }) and interval: None
+10:27:14.650898 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "datazoomcamp-486715", schema: "dbt_homework4", table: "fhv_tripdata" }) and interval: None
+10:27:14.654112 [info ]: Started deferring state
+10:27:14.654209 [info ]: Finished deferring state [  0.00s]
+10:27:14.660050 [info ]: Started downloading schemas
+10:27:14.660615 [debug]:    Started downloading relations
+10:27:14.660912 [debug]:   Finished [  0.00s] downloading relations
+10:27:23.674289 [warn ]: dbt1014: Failed to download source schema for 'source.taxi_rides_bq.staging.fhv_tripdata'. Setting 'static_analysis' to off. Skipping analysis for 'model.taxi_rides_bq.stg_fhv_tripdata': [BigQuery] googleapi: Error 404: Not found: Table datazoomcamp-486715:dbt_homework4.fhv_tripdata, notFound
+10:27:24.984082 [info ]: Started building task graph
+10:27:24.985234 [info ]: Finished building task graph [  0.00s]
+10:27:24.986177 [info ]: Started rendering (14 nodes)
+10:27:24.986292 [info ]: Started model ny_taxi_rides.stg_fhv_tripdata
+10:27:24.986392 [debug]: Started rendering model ny_taxi_rides.stg_fhv_tripdata
+10:27:24.986478 [info ]: Started seed ny_taxi_rides.payment_type_lookup
+10:27:24.986496 [debug]: Started rendering seed ny_taxi_rides.payment_type_lookup
+10:27:24.986516 [info ]: Started model ny_taxi_rides.stg_yellow_tripdata
+10:27:24.986526 [debug]: Started rendering model ny_taxi_rides.stg_yellow_tripdata
+10:27:24.986539 [info ]: Started model ny_taxi_rides.stg_green_tripdata
+10:27:24.986552 [debug]: Started rendering model ny_taxi_rides.stg_green_tripdata
+10:27:24.986574 [info ]: Started seed ny_taxi_rides.zone_lookup
+10:27:24.986584 [debug]: Started rendering seed ny_taxi_rides.zone_lookup
+10:27:24.986595 [info ]: Finished downloading schemas [ 10.33s]
+10:27:24.996608 [debug]: Compiled SQL for node model.taxi_rides_bq.stg_fhv_tripdata at target\.lsp\compiled\models\staging\fhv\stg_fhv_tripdata.sql
+10:27:24.997171 [info ]:  Succeeded [  0.01s] model ny_taxi_rides.stg_fhv_tripdata (table)
+10:27:24.997312 [debug]: Finished rendering [  0.01s] model ny_taxi_rides.stg_fhv_tripdata [success]
+10:27:25.007047 [debug]: Compiled SQL for node model.taxi_rides_bq.stg_yellow_tripdata at target\.lsp\compiled\models\staging\yellow\stg_yellow_tripdata.sql
+10:27:25.007663 [debug]: Finished rendering [  0.02s] model ny_taxi_rides.stg_yellow_tripdata [success]
+10:27:25.007886 [info ]: Started analyzing (13 nodes)
+10:27:25.007944 [debug]: Started analyzing model ny_taxi_rides.stg_yellow_tripdata
+10:27:25.008197 [debug]: Compiled SQL for node model.taxi_rides_bq.stg_green_tripdata at target\.lsp\compiled\models\staging\green\stg_green_tripdata.sql
+10:27:25.008702 [debug]: Finished rendering [  0.02s] model ny_taxi_rides.stg_green_tripdata [success]
+10:27:25.008796 [debug]: Started analyzing model ny_taxi_rides.stg_green_tripdata
+10:27:25.036922 [debug]: Finished rendering [  0.05s] seed ny_taxi_rides.zone_lookup [success]
+10:27:25.037021 [debug]: Started analyzing seed ny_taxi_rides.zone_lookup
+10:27:25.037318 [info ]:  Succeeded [  0.05s] seed  ny_taxi_rides.zone_lookup (table)
+10:27:25.037635 [debug]: Finished analyzing [  0.00s] seed ny_taxi_rides.zone_lookup [success]
+10:27:25.037766 [info ]: Started model ny_taxi_rides.dim_zones
+10:27:25.037814 [debug]: Started rendering model ny_taxi_rides.dim_zones
+10:27:25.039203 [debug]: Finished rendering [  0.05s] seed ny_taxi_rides.payment_type_lookup [success]
+10:27:25.039280 [debug]: Started analyzing seed ny_taxi_rides.payment_type_lookup
+10:27:25.039365 [info ]:  Succeeded [  0.05s] seed  ny_taxi_rides.payment_type_lookup (table)
+10:27:25.039401 [debug]: Finished analyzing [  0.00s] seed ny_taxi_rides.payment_type_lookup [success]
+10:27:25.052157 [debug]: Compiled SQL for node model.taxi_rides_bq.dim_zones at target\.lsp\compiled\models\marts\dim_zones.sql
+10:27:25.052747 [debug]: Started analyzing model ny_taxi_rides.dim_zones
+10:27:25.053215 [debug]: Finished rendering [  0.02s] model ny_taxi_rides.dim_zones [success]
+10:27:25.174416 [info ]:  Succeeded [  0.14s] model ny_taxi_rides.dim_zones (table)
+10:27:25.174490 [debug]: Finished analyzing [  0.12s] model ny_taxi_rides.dim_zones [success]
+10:27:25.318854 [info ]:  Succeeded [  0.33s] model ny_taxi_rides.stg_green_tripdata (table)
+10:27:25.318930 [debug]: Finished analyzing [  0.31s] model ny_taxi_rides.stg_green_tripdata [success]
+10:27:25.319005 [info ]:  Succeeded [  0.33s] model ny_taxi_rides.stg_yellow_tripdata (table)
+10:27:25.319041 [debug]: Finished analyzing [  0.31s] model ny_taxi_rides.stg_yellow_tripdata [success]
+10:27:25.319095 [info ]: Started model ny_taxi_rides.taxi_rides
+10:27:25.319152 [debug]: Started rendering model ny_taxi_rides.taxi_rides
+10:27:25.326117 [debug]: Compiled SQL for node model.taxi_rides_bq.taxi_rides at target\.lsp\compiled\models\intermediate\taxi_rides.sql
+10:27:25.326609 [debug]: Finished rendering [  0.01s] model ny_taxi_rides.taxi_rides [success]
+10:27:25.326689 [debug]: Started analyzing model ny_taxi_rides.taxi_rides
+10:27:25.374356 [info ]:  Succeeded [  0.05s] model ny_taxi_rides.taxi_rides (table)
+10:27:25.374452 [debug]: Finished analyzing [  0.05s] model ny_taxi_rides.taxi_rides [success]
+10:27:25.374528 [info ]: Started model ny_taxi_rides.int_trips
+10:27:25.374573 [debug]: Started rendering model ny_taxi_rides.int_trips
+10:27:25.388440 [debug]: Compiled SQL for node model.taxi_rides_bq.int_trips at target\.lsp\compiled\models\intermediate\int_trips.sql
+10:27:25.388582 [debug]: Started analyzing model ny_taxi_rides.int_trips
+10:27:25.388604 [debug]: Finished rendering [  0.01s] model ny_taxi_rides.int_trips [success]
+10:27:25.566091 [info ]:  Succeeded [  0.19s] model ny_taxi_rides.int_trips (table)
+10:27:25.566170 [debug]: Finished analyzing [  0.18s] model ny_taxi_rides.int_trips [success]
+10:27:25.566224 [info ]: Started model ny_taxi_rides.fct_trips
+10:27:25.566253 [debug]: Started rendering model ny_taxi_rides.fct_trips
+10:27:25.574128 [debug]: Compiled SQL for node model.taxi_rides_bq.fct_trips at target\.lsp\compiled\models\marts\fct_trips.sql
+10:27:25.574271 [debug]: Started analyzing model ny_taxi_rides.fct_trips
+10:27:25.574301 [debug]: Finished rendering [  0.01s] model ny_taxi_rides.fct_trips [success]
+10:27:25.669659 [info ]:  Succeeded [  0.10s] model ny_taxi_rides.fct_trips (table)
+10:27:25.669749 [debug]: Finished analyzing [  0.10s] model ny_taxi_rides.fct_trips [success]
+10:27:25.669803 [info ]: Started model ny_taxi_rides.fct_monthly_zone_revenue
+10:27:25.669857 [debug]: Started rendering model ny_taxi_rides.fct_monthly_zone_revenue
+10:27:25.669931 [info ]: Started model ny_taxi_rides.dim_vendors
+10:27:25.670042 [debug]: Started rendering model ny_taxi_rides.dim_vendors
+10:27:25.674916 [debug]: Compiled SQL for node model.taxi_rides_bq.dim_vendors at target\.lsp\compiled\models\marts\dim_vendors.sql
+10:27:25.674911 [debug]: Compiled SQL for node model.taxi_rides_bq.fct_monthly_zone_revenue at target\.lsp\compiled\models\marts\reporting\fct_monthly_zone_revenue.sql
+10:27:25.675030 [debug]: Started analyzing model ny_taxi_rides.dim_vendors
+10:27:25.675033 [debug]: Finished rendering [  0.00s] model ny_taxi_rides.dim_vendors [success]
+10:27:25.675074 [debug]: Finished rendering [  0.01s] model ny_taxi_rides.fct_monthly_zone_revenue [success]
+10:27:25.675115 [debug]: Started analyzing model ny_taxi_rides.fct_monthly_zone_revenue
+10:27:25.696117 [info ]:  Succeeded [  0.03s] model ny_taxi_rides.dim_vendors (table)
+10:27:25.696399 [debug]: Finished analyzing [  0.02s] model ny_taxi_rides.dim_vendors [success]
+10:27:25.734914 [info ]:  Succeeded [  0.06s] model ny_taxi_rides.fct_monthly_zone_revenue (table)
+10:27:25.735005 [debug]: Finished analyzing [  0.06s] model ny_taxi_rides.fct_monthly_zone_revenue [success]
+10:27:25.735066 [info ]: Started model ny_taxi_rides.assignment
+10:27:25.735096 [debug]: Started rendering model ny_taxi_rides.assignment
+10:27:25.735238 [info ]: Started model ny_taxi_rides.assignment3
+10:27:25.735370 [debug]: Started rendering model ny_taxi_rides.assignment3
+10:27:25.735433 [info ]: Started model ny_taxi_rides.assignment2
+10:27:25.735456 [debug]: Started rendering model ny_taxi_rides.assignment2
+10:27:25.746072 [debug]: Compiled SQL for node model.taxi_rides_bq.assignment at target\.lsp\compiled\models\marts\reporting\assignment.sql
+10:27:25.746186 [debug]: Compiled SQL for node model.taxi_rides_bq.assignment2 at target\.lsp\compiled\models\marts\reporting\assignment2.sql
+10:27:25.746257 [debug]: Finished rendering [  0.01s] model ny_taxi_rides.assignment [success]
+10:27:25.746207 [debug]: Started analyzing model ny_taxi_rides.assignment
+10:27:25.746290 [debug]: Compiled SQL for node model.taxi_rides_bq.assignment3 at target\.lsp\compiled\models\marts\reporting\assignment3.sql
+10:27:25.746320 [debug]: Finished rendering [  0.01s] model ny_taxi_rides.assignment2 [success]
+10:27:25.746351 [debug]: Started analyzing model ny_taxi_rides.assignment2
+10:27:25.746437 [debug]: Finished rendering [  0.01s] model ny_taxi_rides.assignment3 [success]
+10:27:25.746460 [info ]: Finished rendering [  0.76s] (14 nodes, 0 skipped, 0 errors)
+10:27:25.746483 [debug]: Started analyzing model ny_taxi_rides.assignment3
+10:27:25.751057 [info ]:  Succeeded [  0.01s] model ny_taxi_rides.assignment3 (table)
+10:27:25.751267 [debug]: Finished analyzing [  0.00s] model ny_taxi_rides.assignment3 [success]
+10:27:25.773831 [info ]:  Succeeded [  0.04s] model ny_taxi_rides.assignment2 (table)
+10:27:25.773916 [debug]: Finished analyzing [  0.03s] model ny_taxi_rides.assignment2 [success]
+10:27:25.775942 [info ]:  Succeeded [  0.04s] model ny_taxi_rides.assignment (table)
+10:27:25.776057 [debug]: Finished analyzing [  0.03s] model ny_taxi_rides.assignment [success]
+10:27:25.776084 [info ]: Finished analyzing [  0.77s] (13 nodes, 0 skipped, 0 errors)
+10:27:25.802480 [info ]: Cached model count updated: 12 models (accurate)
+10:27:33.437606 [info ]: Loading ~/.dbt/profiles.yml
