@@ -145,3 +145,4 @@
 {"timestamp":"2026-02-25T10:15:09.746173","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/user_profile_sensor.py","logger":"airflow.models.dagbag.DagBag"}
 {"timestamp":"2026-02-25T10:15:40.668317","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/user_profile_sensor.py","logger":"airflow.models.dagbag.DagBag"}
 {"timestamp":"2026-02-25T10:16:11.819496","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/user_profile_sensor.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2026-02-25T10:16:43.263370","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/user_profile_sensor.py","logger":"airflow.models.dagbag.DagBag"}
