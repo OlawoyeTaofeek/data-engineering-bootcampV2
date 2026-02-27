@@ -1,0 +1,1 @@
+{{ jaffle_shop.adapter_aware_clean_stale_models()}}

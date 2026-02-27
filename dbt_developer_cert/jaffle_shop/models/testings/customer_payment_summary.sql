@@ -5,7 +5,7 @@ with payments as (
     select
         order_id,
         payment_method,
-        {{ cents_to_dollars('amount') }} as amount_usd
+        {{ cents_to_dollars('amount', 4) }} as amount_usd
     from {{ ref('stg_stripe__payments') }}
 
 ),
