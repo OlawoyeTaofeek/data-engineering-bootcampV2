@@ -37,6 +37,9 @@ models:
     marts:
       +materialized: table
     
+snapshots:
+  jaffle_shop:
+    +schema: snapshots
 
 vars:
   min_total_amount: 10
