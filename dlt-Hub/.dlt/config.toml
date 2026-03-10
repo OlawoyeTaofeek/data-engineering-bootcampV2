@@ -1,10 +1,10 @@
 [pipeline]
-pipeline_name = "taxi_pipeline"
-dataset_name = "taxi_data"
-
-[destination.filesystem]
-bucket_url = "storage"
-layout = "{table_name}/{load_id}.{file_id}.{ext}"
+pipeline_name = "taxi_pipeline_new"
+dataset_name = "new_taxi_data"
 
 [destination.bigquery]
 location = "US"
+
+[destination.bigquery.credentials]
+project_id = "datazoomcamp-486715"
+path = "C:/Users/user/Documents/data-engineering-bootcampV2/dlt-Hub/credentials/DESTINATION__BIGQUERY__CREDENTIAL.json"
