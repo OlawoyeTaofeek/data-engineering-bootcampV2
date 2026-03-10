@@ -71,4 +71,5 @@ duckdb.db
 .dlt/secrets.toml
 .dlt/*.json
 storage/
+dlt-Hub\credentials\DESTINATION__BIGQUERY_CREDENTIAL.json
 
