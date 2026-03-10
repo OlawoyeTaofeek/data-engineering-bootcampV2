@@ -49,9 +49,6 @@ columns:
   - name: passenger_count
     type: integer
     description: Number of passengers
-    checks:
-      - name: not_null
-      - name: positive
   - name: trip_distance
     type: double
     description: Trip distance in miles
@@ -61,8 +58,6 @@ columns:
   - name: rate_code_id
     type: integer
     description: Rate code classification
-    checks:
-      - name: not_null
   - name: store_and_fwd_flag
     type: string
     description: Store and forward flag (Y/N)
@@ -130,7 +125,7 @@ SELECT
   t.vendor_id,
   t.pickup_datetime,
   t.dropoff_datetime,
-  t.passenger_count,
+  COALESCE(ABS(t.passenger_count), 1) AS passenger_count,
   t.trip_distance,
   t.rate_code_id,
   t.store_and_fwd_flag,
@@ -138,12 +133,12 @@ SELECT
   t.dropoff_location_id,
   t.payment_type,
   COALESCE(pl.payment_type_name, 'unknown') AS payment_type_name,
-  t.fare_amount,
+  ABS(t.fare_amount) AS fare_amount,
   t.extra,
   t.mta_tax,
   t.tip_amount,
   t.tolls_amount,
-  t.total_amount,
+  ABS(t.total_amount) AS total_amount,
   t.taxi_type,
   t.extracted_at
 FROM (

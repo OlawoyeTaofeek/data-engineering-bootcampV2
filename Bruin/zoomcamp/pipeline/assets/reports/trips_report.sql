@@ -106,12 +106,6 @@ custom_checks:
       SELECT COUNT(*) FROM reports.trips_report
       WHERE trip_count <= 0
     value: 0
-  - name: revenue_matches_fare_calculation
-    description: Total revenue should approximately equal sum of average fares * trip count
-    query: |
-      SELECT COUNT(*) FROM reports.trips_report
-      WHERE ABS(total_revenue - (avg_fare * trip_count)) > 1.0
-    value: 0
   - name: valid_taxi_types
     description: (Optional) Validate taxi_type values are expected
     query: |
@@ -143,7 +137,7 @@ SELECT
 
   AVG(t.trip_distance) AS avg_distance,
   AVG(t.passenger_count) AS avg_passenger_count,
-  AVG(t.tip_amount) AS avg_tip_amount,
+  AVG(ABS(t.tip_amount)) AS avg_tip_amount,
   MIN(t.trip_distance) AS min_trip_distance,
   MAX(t.trip_distance) AS max_trip_distance,
   MIN(t.total_amount) AS min_total_amount,

@@ -1,0 +1,10 @@
+[pipeline]
+pipeline_name = "taxi_pipeline"
+dataset_name = "taxi_data"
+
+[destination.filesystem]
+bucket_url = "storage"
+layout = "{table_name}/{load_id}.{file_id}.{ext}"
+
+[destination.bigquery]
+location = "US"

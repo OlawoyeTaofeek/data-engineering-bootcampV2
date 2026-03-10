@@ -84,7 +84,9 @@ import requests
 
 
 # TLC Data endpoint based on taxi type
-TLC_BASE_URL = "https://d37cibb9cSandBox.cloudfront.net"
+TLC_BASE_URL = "https://d37ci6vzurychx.cloudfront.net/trip-data"
+
+
 
 
 def get_bruin_context():
@@ -112,17 +114,18 @@ def get_bruin_context():
 
 
 def generate_trip_id(row):
-    """Generate a unique trip ID as a hash of vendor_id + pickup_datetime + dropoff_datetime."""
+    """Generate a unique trip ID as a hash of vendor_id + pickup_datetime + dropoff_datetime.
+    
+    Assumes columns have been normalized to snake_case (vendor_id, pickup_datetime, dropoff_datetime).
+    """
     try:
-        key = f"{int(row['vendor_id'])}{row['tpep_pickup_datetime']}{row['tpep_dropoff_datetime']}"
-        return hashlib.md5(key.encode()).hexdigest()
-    except (KeyError, ValueError, TypeError):
-        # Fallback for Green taxi or if columns are missing
-        try:
-            key = f"{int(row.get('vendor_id', 0))}{row.get('lpep_pickup_datetime', '')}{row.get('lpep_dropoff_datetime', '')}"
-            return hashlib.md5(key.encode()).hexdigest()
-        except:
-            return None
+        vendor = int(row.get('vendor_id', 0))
+        pickup = row.get('pickup_datetime', '')
+        dropoff = row.get('dropoff_datetime', '')
+        key = f"{vendor}{pickup}{dropoff}"
+        return hashlib.md5(str(key).encode()).hexdigest()
+    except Exception:
+        return None
 
 
 def fetch_tlc_data(taxi_type: str, year: int, month: int) -> Optional[pd.DataFrame]:
@@ -142,6 +145,7 @@ def fetch_tlc_data(taxi_type: str, year: int, month: int) -> Optional[pd.DataFra
     
     # Construct parquet URL
     url = f"{TLC_BASE_URL}/{taxi_type}_tripdata_{year}-{month_str}.parquet"
+    # "https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2024-"
     
     try:
         print(f"Fetching: {url}")
@@ -156,28 +160,42 @@ def fetch_tlc_data(taxi_type: str, year: int, month: int) -> Optional[pd.DataFra
 def normalize_columns(df: pd.DataFrame, taxi_type: str) -> pd.DataFrame:
     """
     Normalize columns for different taxi types to a common schema.
-    Yellow and Green have different column names.
+    Yellow taxi uses tpep_* columns, Green uses lpep_* columns.
     """
     df = df.copy()
     
-    # Map pickup/dropoff datetime columns based on taxi type
-    if taxi_type == "yellow":
-        pickup_col = "tpep_pickup_datetime"
-        dropoff_col = "tpep_dropoff_datetime"
-    elif taxi_type == "green":
-        pickup_col = "lpep_pickup_datetime"
-        dropoff_col = "lpep_dropoff_datetime"
-    else:
-        pickup_col = "pickup_datetime"
-        dropoff_col = "dropoff_datetime"
-    
-    # Rename columns to standard names if they exist
+    # Map NYC taxi PascalCase names to standardized snake_case
+    # These are the actual column names from NYC TLC parquet files
     column_mapping = {}
-    if pickup_col in df.columns:
-        column_mapping[pickup_col] = "pickup_datetime"
-    if dropoff_col in df.columns:
-        column_mapping[dropoff_col] = "dropoff_datetime"
     
+    # Vendor ID (PascalCase in TLC files)
+    if "VendorID" in df.columns:
+      
+        column_mapping["VendorID"] = "vendor_id"
+    
+    # Rate Code ID
+    if "RatecodeID" in df.columns:
+        column_mapping["RatecodeID"] = "rate_code_id"
+    
+    # Location IDs
+    if "PULocationID" in df.columns:
+        column_mapping["PULocationID"] = "pickup_location_id"
+    if "DOLocationID" in df.columns:
+        column_mapping["DOLocationID"] = "dropoff_location_id"
+    
+    # Datetime columns depend on taxi type
+    if taxi_type == "yellow":
+        if "tpep_pickup_datetime" in df.columns:
+            column_mapping["tpep_pickup_datetime"] = "pickup_datetime"
+        if "tpep_dropoff_datetime" in df.columns:
+            column_mapping["tpep_dropoff_datetime"] = "dropoff_datetime"
+    elif taxi_type == "green":
+        if "lpep_pickup_datetime" in df.columns:
+            column_mapping["lpep_pickup_datetime"] = "pickup_datetime"
+        if "lpep_dropoff_datetime" in df.columns:
+            column_mapping["lpep_dropoff_datetime"] = "dropoff_datetime"
+    
+    # Apply all mappings at once
     df = df.rename(columns=column_mapping)
     
     # Standardize payment_type to integer if it's a string
@@ -189,36 +207,12 @@ def normalize_columns(df: pd.DataFrame, taxi_type: str) -> pd.DataFrame:
 
 def select_and_rename_columns(df: pd.DataFrame, taxi_type: str) -> pd.DataFrame:
     """
-    Select and rename columns to match the asset schema.
+    Select standardized columns that have been normalized by normalize_columns().
+    At this point, columns should already be in snake_case (vendor_id, rate_code_id, etc.)
     """
-    column_mapping = {
-        "vendor_id": "vendor_id",
-        "pickup_datetime": "pickup_datetime",
-        "dropoff_datetime": "dropoff_datetime",
-        "passenger_count": "passenger_count",
-        "trip_distance": "trip_distance",
-        "rate_code_id": "rate_code_id",
-        "store_and_fwd_flag": "store_and_fwd_flag",
-        "PULocationID": "pickup_location_id",
-        "DOLocationID": "dropoff_location_id",
-        "pickup_location_id": "pickup_location_id",
-        "dropoff_location_id": "dropoff_location_id",
-        "payment_type": "payment_type",
-        "fare_amount": "fare_amount",
-        "extra": "extra",
-        "mta_tax": "mta_tax",
-        "tip_amount": "tip_amount",
-        "tolls_amount": "tolls_amount",
-        "total_amount": "total_amount",
-    }
-    
     df = df.copy()
     
-    # Rename columns that exist
-    existing_mappings = {k: v for k, v in column_mapping.items() if k in df.columns}
-    df = df.rename(columns=existing_mappings)
-    
-    # Select only the columns we need (those that now exist in the dataframe)
+    # Standard output columns (in snake_case, post-normalization)
     output_columns = [
         "vendor_id", "pickup_datetime", "dropoff_datetime", "passenger_count",
         "trip_distance", "rate_code_id", "store_and_fwd_flag", "pickup_location_id",
@@ -226,9 +220,9 @@ def select_and_rename_columns(df: pd.DataFrame, taxi_type: str) -> pd.DataFrame:
         "tip_amount", "tolls_amount", "total_amount"
     ]
     
-    # Filter to columns that exist
-    output_columns = [col for col in output_columns if col in df.columns]
-    df = df[output_columns]
+    # Select available columns (some may be missing from source data, e.g., tolls_amount)
+    available_columns = [col for col in output_columns if col in df.columns]
+    df = df[available_columns]
     
     return df
 
@@ -303,14 +297,15 @@ def materialize():
     # Concatenate all data
     final_df = pd.concat(all_dfs, ignore_index=True)
     
-    # Ensure correct column order
+    # Ensure correct column order; reindex will add any missing columns (as NaN)
     column_order = [
-        "trip_id", "vendor_id", "pickup_datetime", "dropoff_datetime", "passenger_count",
-        "trip_distance", "rate_code_id", "store_and_fwd_flag", "pickup_location_id",
-        "dropoff_location_id", "payment_type", "fare_amount", "extra", "mta_tax",
-        "tip_amount", "tolls_amount", "total_amount", "taxi_type", "extracted_at"
+      "trip_id", "vendor_id", "pickup_datetime", "dropoff_datetime", "passenger_count",
+      "trip_distance", "rate_code_id", "store_and_fwd_flag", "pickup_location_id",
+      "dropoff_location_id", "payment_type", "fare_amount", "extra", "mta_tax",
+      "tip_amount", "tolls_amount", "total_amount", "taxi_type", "extracted_at"
     ]
-    final_df = final_df[column_order]
+    # Use reindex to avoid KeyError if some columns are missing from source data
+    final_df = final_df.reindex(columns=column_order)
     
     print(f"Total records fetched: {len(final_df)}")
     return final_df
