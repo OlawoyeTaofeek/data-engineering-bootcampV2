@@ -1,0 +1,77 @@
+version: 2
+
+macros:
+  - name: cents_to_dollars
+    description: >
+      Converts a monetary value stored in cents to dollars by dividing by 100
+      and rounding to the specified number of decimal places.
+    arguments:
+      - name: column_name
+        type: string
+        description: >
+          The column (or expression) containing the amount in cents that should
+          be converted to dollars.
+      - name: decimals
+        type: integer
+        description: >
+          The number of decimal places to round the result to. Defaults to 2.
+
+  - name: generate_payment_pivot
+    description: >
+      Dynamically generates SQL to pivot payment amounts by payment method.
+      For each provided payment method, this macro creates a SUM(CASE WHEN ...)
+      expression that aggregates the specified amount column into a separate
+      `<method>_amount` column.
+
+      Raises a compiler error if no payment methods are provided.
+    arguments:
+      - name: methods
+        type: list
+        description: >
+          A list of payment method names (strings). A separate aggregated column
+          will be generated for each method.
+      - name: amount_column
+        type: string
+        description: >
+          The column (or expression) containing the monetary amount to aggregate.
+          
+  - name: grant_select
+    description: >
+      Grants SELECT privileges on all tables and views within a specified schema
+      to a given role. The macro also grants USAGE on the schema and switches
+      to the specified database before applying permissions.
+
+      By default, the macro uses:
+      - target.schema as the schema
+      - target.database as the database
+
+      The role argument must be provided unless explicitly configured
+      in the target profile.
+
+      This macro executes the SQL statements at run time using run_query(),
+      making it suitable for post-hooks, deployment automation,
+      or environment-based permission management.
+
+      Typical use cases:
+      - Automatically granting BI/reporting roles access to newly built models
+      - Managing environment-specific access control (dev vs prod)
+      - Embedding governance directly into dbt workflows
+
+    arguments:
+      - name: schema
+        type: string
+        description: >
+          The schema on which privileges will be granted.
+          Defaults to target.schema.
+
+      - name: role
+        type: string
+        description: >
+          The database role that will receive the privileges.
+          This argument is typically required unless defined in the profile.
+
+      - name: database
+        type: string
+        description: >
+          The database containing the schema.
+          Defaults to target.database.

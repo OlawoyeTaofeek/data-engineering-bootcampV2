@@ -1,0 +1,1 @@
+LOWER(FIRST_NAME) || '.' || TO_VARCHAR(ID) || '@companyname.com'

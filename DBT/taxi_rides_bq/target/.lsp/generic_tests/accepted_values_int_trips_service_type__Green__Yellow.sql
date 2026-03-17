@@ -1,0 +1,1 @@
+{{ test_accepted_values(column_name="service_type", model=get_where_subquery(ref('int_trips')), values=["Green","Yellow"]) }}

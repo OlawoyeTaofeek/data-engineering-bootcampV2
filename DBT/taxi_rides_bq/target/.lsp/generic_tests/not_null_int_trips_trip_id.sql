@@ -1,0 +1,1 @@
+{{ test_not_null(column_name="trip_id", model=get_where_subquery(ref('int_trips'))) }}

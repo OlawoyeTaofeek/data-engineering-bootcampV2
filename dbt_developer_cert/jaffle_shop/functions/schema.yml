@@ -1,0 +1,32 @@
+functions:
+  - name: safe_divide   # required
+    description: Safely divide a numerator by denominator where that value might be zero # optional
+    config:
+      schema: udf_schema
+      database: udf_db
+      volatility: deterministic
+    arguments:                  # optional
+      - name: numerator        # required if arguments is specified
+        data_type: number      # required if arguments is specified
+        # description: The string that I want to check if it's representing a positive integer (like "10")  #}
+        # default_value: "'1'"    # optional, available in Snowflake and Postgres #}
+      - name: denominator
+        data_type: number
+    returns:                    # required
+      data_type: number      # required
+
+  - name: create_email
+    description: Generate a company name with a customer name and id
+    config:
+      schema: udf_schema
+      database: udf_db
+      volatility: deterministic
+    arguments:                  # optional
+      - name: first_name     # required if arguments is specified
+        data_type: varchar    # required if arguments is specified
+        # description: The string that I want to check if it's representing a positive integer (like "10")  #}
+        # default_value: "'1'"    # optional, available in Snowflake and Postgres #}
+      - name: id
+        data_type: number
+    returns:                    # required
+      data_type: varchar  

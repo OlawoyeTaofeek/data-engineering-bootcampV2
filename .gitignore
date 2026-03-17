@@ -1,0 +1,63 @@
+# Environments
+.venv/
+env/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# IDEs
+.vscode/
+.idea/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Data files
+data/
+*.csv
+*.parquet
+*.gz
+*.zip
+
+# Spark data
+spark/Data/raw
+spark/Data/fhvhv_tripdata_2021-01.csv
+
+# Logs
+logs/
+
+# Databases
+*.db
+*.duckdb
+
+# Environment variables
+.env
+.env_encoded
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraform.tfstate.lock.info
+.terraformrc
+terraform.rc
+
+# DLT
+.dlt/
+.dlt/secrets.toml
+storage/
+
+# Sensitive credentials
+credentials*.json
+*.json
+dlt-Hub/credentials/DESTINATION__BIGQUERY_CREDENTIAL.json

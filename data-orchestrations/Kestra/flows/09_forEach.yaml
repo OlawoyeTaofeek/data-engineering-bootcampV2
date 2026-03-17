@@ -1,0 +1,21 @@
+id: 08_for_each
+namespace: zoomcamp
+
+inputs:
+  - id: names
+    type: ARRAY
+    itemType: STRING
+    defaults:
+      - Alice
+      - Bob
+      - Charlie
+
+tasks:
+  - id: loop_names
+    type: io.kestra.plugin.core.flow.ForEach
+    values: "{{ inputs.names }}"
+    tasks:
+      - id: say_hi
+        type: io.kestra.plugin.scripts.shell.Commands
+        commands:
+          - echo "Hello {{ taskrun.value }}"

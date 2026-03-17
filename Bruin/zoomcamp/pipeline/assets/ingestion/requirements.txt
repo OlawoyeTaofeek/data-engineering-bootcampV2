@@ -1,0 +1,6 @@
+# Python dependencies for the ingestion layer
+# Used by trips.py to fetch and process NYC TLC taxi data
+
+pandas==2.2.0
+requests==2.31.0
+
