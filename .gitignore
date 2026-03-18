@@ -22,6 +22,7 @@ __pycache__/
 # Spark data
 spark/Data/raw
 spark/Data/fhvhv_tripdata_2021-01.csv
+spark/Data/pq
 
 # Logs
 logs/
@@ -59,3 +60,4 @@ storage/
 credentials*.json
 *.json
 dlt-Hub/credentials/DESTINATION__BIGQUERY_CREDENTIAL.json
+jupyter-scala

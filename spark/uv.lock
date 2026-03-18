@@ -389,6 +389,15 @@ wheels = [
 ]
 
 [[package]]
+name = "findspark"
+version = "2.0.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/41/86/445e2b90fff1efc0858512102ff78746a04c1a4a9c1d3fa9e4650c11a000/findspark-2.0.1.tar.gz", hash = "sha256:aa10a96cb616cab329181d72e8ef13d2dc453b4babd02b5482471a0882c1195e", size = 5284, upload-time = "2022-02-11T08:02:07.669Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a4/cb/7d2bb508f4ca00a043fd53e8156c11767799d3f534bf451a0942211d5def/findspark-2.0.1-py2.py3-none-any.whl", hash = "sha256:e5d5415ff8ced6b173b801e12fc90c1eefca1fb6bf9c19c4fc1f235d4222e753", size = 4446, upload-time = "2022-02-11T08:02:06.567Z" },
+]
+
+[[package]]
 name = "fqdn"
 version = "1.5.1"
 source = { registry = "https://pypi.org/simple" }
@@ -880,6 +889,22 @@ wheels = [
 ]
 
 [[package]]
+name = "metakernel"
+version = "0.32.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "comm" },
+    { name = "ipykernel" },
+    { name = "jedi" },
+    { name = "jupyter-core" },
+    { name = "pexpect" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/18/6f/a68999453116a90e7e8f58a4dd91e40929e039c507828181784e3af00903/metakernel-0.32.0.tar.gz", hash = "sha256:031984b4c0629c129c86162d27bd8df264d6993bf961aec730fdb71facefddbc", size = 460794, upload-time = "2026-03-10T12:12:11.985Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/9c/0a/fc5d09d84543a6c46e4f69dc5639d55c9258dd5bb6f258b1aedf3f32ab77/metakernel-0.32.0-py3-none-any.whl", hash = "sha256:1c033a52feffa46d844d9ef339f16299872d7046897b6f1ec64ced2f30b82159", size = 197940, upload-time = "2026-03-10T12:12:09.539Z" },
+]
+
+[[package]]
 name = "mistune"
 version = "3.2.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1160,7 +1185,7 @@ name = "pexpect"
 version = "4.9.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "ptyprocess", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
+    { name = "ptyprocess" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/42/92/cc564bf6381ff43ce1f4d06852fc19a2f11d180f23dc32d9588bee2f149d/pexpect-4.9.0.tar.gz", hash = "sha256:ee7d41123f3c9911050ea2c2dac107568dc43b2d3b0c7557a33212c398ead30f", size = 166450, upload-time = "2023-11-25T09:07:26.339Z" }
 wheels = [
@@ -1647,6 +1672,7 @@ dependencies = [
     { name = "notebook" },
     { name = "pandas" },
     { name = "pyspark" },
+    { name = "spylon-kernel" },
 ]
 
 [package.metadata]
@@ -1654,7 +1680,33 @@ requires-dist = [
     { name = "notebook", specifier = ">=7.5.5" },
     { name = "pandas", specifier = ">=3.0.1" },
     { name = "pyspark", specifier = ">=4.1.1" },
+    { name = "spylon-kernel", specifier = ">=0.4.1" },
 ]
+
+[[package]]
+name = "spylon"
+version = "0.3.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/a1/1b/236051a959a6cc76f5962e32aa743a31e77e3acd27a742e625d49eef4c7a/spylon-0.3.0.tar.gz", hash = "sha256:104b9bf7a28c15c27b3c3dcba199f847b93f09b78e97f15e0a0bcac3cbb0bbe4", size = 140391, upload-time = "2017-05-26T01:34:06.725Z" }
+
+[package.optional-dependencies]
+spark = [
+    { name = "findspark" },
+    { name = "pyyaml" },
+]
+
+[[package]]
+name = "spylon-kernel"
+version = "0.4.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "ipykernel" },
+    { name = "jedi" },
+    { name = "metakernel" },
+    { name = "spylon", extra = ["spark"] },
+    { name = "tornado" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/3b/26/0c1c289ab535489b0e290461b0f2c45a00d2033a50a58a45f6d00c5fb205/spylon-kernel-0.4.1.tar.gz", hash = "sha256:378a6fc652f6af8dbfbd48668bc1a0bc68bca1f28e8932985d88a8f6da4b29ab", size = 33513, upload-time = "2018-03-23T20:36:58.65Z" }
 
 [[package]]
 name = "stack-data"
