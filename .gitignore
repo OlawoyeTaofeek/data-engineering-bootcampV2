@@ -25,6 +25,7 @@ spark/Data/fhvhv_tripdata_2021-01.csv
 spark/Data/pq
 spark/Data/definitive_guide_spark/online-retail-dataset.csv
 *.csv
+Data/
 
 # Logs
 logs/
